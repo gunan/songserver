@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  </head>
+
+  <body>
+     <h1>Search!</h1>
+    <form method="POST" action = "/">
+      <div class = "form-group">
+        <input type="text" name = "search_str">
+      </div>
+      <input class="btn btn-primary" type="submit" value="submit">
+    </form>
+
+    {% if number_of_results %}
+    <h1>{{ number_of_results }} results found!</h1>
+    <table>
+      <tr>
+        <th>number</th>
+        <th>name</th>
+        <th>author</th>
+        <th>makam</th>
+        <th>form</th>
+        <th>usul</th>
+        <th>composer</th> 
+        <th>links</th> 
+      </tr>
+
+      {% for i in range(0, number_of_results) %}
+      <tr>
+        {% for value in table[i] %}
+          <td>
+            {{ value }}
+          </td>
+        {% endfor %}
+        <td>
+        {% for image in images[i] %}
+        <a href='/song/{{ image }}'>{{ image }}</a>
+        {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </table>
+    {% endif %}
+
+  </body>
+
+</html>
