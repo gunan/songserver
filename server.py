@@ -59,7 +59,7 @@ class Song(object):
         files = listdatadir()
         tmp1 = self.number + '.'
         tmp2 = self.number + '_'
-        return [x for x in files if (tmp1 in x) or (tmp2 in x)]
+        return [x for x in files if x.startswith(tmp1) or x.startswith(tmp2)]
 
 
 # The class to hold the database.
@@ -86,8 +86,6 @@ def search_page():
         kwargs['table'] = [r.tablerow() for r in results]
         kwargs['images'] = [r.getFileList() for r in results]
 
-        print(kwargs['images'])
-    
     return render_template('index.html', **kwargs)
 
 # Get the songs.
